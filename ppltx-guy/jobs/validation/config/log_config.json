@@ -1,0 +1,110 @@
+{
+  "appsflyer_etl": {
+    "alerts": {
+      "alert_generate_events": {
+        "message": "",
+        "enable_message": "--",
+        "step_name": "end",
+        "file_name": "generate_events.py",
+        "job_name": "installs",
+        "dataset": "g_logs",
+        "thresh_in_hours": -5,
+        "description": "Check that the job run in the recent 24 hours"
+      },
+      "alert_generate_events_inapp": {
+        "message": "",
+        "enable_message": "--",
+        "step_name": "end",
+        "file_name": "generate_events_inapp.py",
+        "job_name": "inapp",
+        "dataset": "g_logs",
+        "thresh_in_hours": 24,
+        "description": "Check that the job run in the recent 24 hours"
+      },
+      "alert_gcs_etl": {
+        "message": "",
+        "enable_message": "--",
+        "step_name": "end",
+        "file_name": "create_table_from_gcs.py",
+        "job_name": "appsflyer",
+        "dataset": "g_logs",
+        "thresh_in_hours": 24,
+        "description": "Check that the job run in the recent 24 hours"
+      },
+      "alert_fact": {
+        "message": "",
+        "enable_message": "--",
+        "step_name": "end",
+        "file_name": "my_etl.py",
+        "job_name": "fact",
+        "dataset": "g_logs",
+        "thresh_in_hours": 24,
+        "description": "Check that the job run in the recent 24 hours"
+      }
+    }
+  },
+  "gaming_etl": {
+    "alerts": {
+      "alert_fact": {
+        "message": "",
+        "enable_message": "--",
+        "step_name": "end",
+        "file_name": "final_project.py",
+        "job_name": "fact",
+        "dataset": "fp_logs",
+        "thresh_in_hours": 24,
+        "description": "Check that the job run in the recent 24 hours"
+      },
+      "alert_daily_panel": {
+        "message": "",
+        "enable_message": "--",
+        "step_name": "end",
+        "file_name": "final_project.py",
+        "job_name": "daily_panel",
+        "dataset": "fp_logs",
+        "thresh_in_hours": 24,
+        "description": "Check that the job run in the recent 24 hours"
+      },
+      "alert_user_panel": {
+        "message": "",
+        "enable_message": "--",
+        "step_name": "end",
+        "file_name": "final_project.py",
+        "job_name": "user_panel",
+        "dataset": "fp_logs",
+        "thresh_in_hours": 24,
+        "description": "Check that the job run in the recent 24 hours"
+      },
+      "alert_installs": {
+        "message": "",
+        "enable_message": "--",
+        "step_name": "end",
+        "file_name": "final_project.py",
+        "job_name": "installs",
+        "dataset": "fp_logs",
+        "thresh_in_hours": 24,
+        "description": "Check that the job run in the recent 24 hours"
+      },
+      "alert_dau": {
+        "message": "",
+        "enable_message": "--",
+        "step_name": "end",
+        "file_name": "final_project.py",
+        "job_name": "dau",
+        "dataset": "fp_logs",
+        "thresh_in_hours": 24,
+        "description": "Check that the job run in the recent 24 hours"
+      },
+      "alert_kpis": {
+        "message": "",
+        "enable_message": "--",
+        "step_name": "end",
+        "file_name": "kpis_monitoring.py",
+        "job_name": "kpis",
+        "dataset": "fp_logs",
+        "thresh_in_hours": 24,
+        "description": "Check that the job run in the recent 24 hours"
+      }
+    }
+  }
+}

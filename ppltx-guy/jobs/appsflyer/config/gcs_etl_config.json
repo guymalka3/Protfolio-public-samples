@@ -1,0 +1,18 @@
+{
+  "gcs_etl": {
+    "appsflyer": {
+      "daily": {
+        "enabled": true,
+        "description": "Load daily raw events from gcs to a bigquery table.",
+        "bucket_name": "subpltx",
+        "dataset_id": "g_appsflyer"
+      },
+      "hourly": {
+        "enabled": true,
+        "description": "Load hourly raw events from gcs to a bigquery table.",
+        "bucket_name": "subpltx",
+        "dataset_id": "g_appsflyer"
+      }
+    }
+  }
+}

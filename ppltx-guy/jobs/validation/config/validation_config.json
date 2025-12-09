@@ -1,0 +1,136 @@
+{
+  "appsflyer": {
+    "validation": {
+      "af_fact_validation": {
+        "project_src": "subpltx-dev",
+        "dataset_src": "g_appsflyer",
+        "table_src": "appsflyer_*",
+        "dataset_dst": "g_appsflyer",
+        "table_dst": "fact",
+        "partition_atr": "date(event_time)",
+        "cnt_src": "count(1)",
+        "cnt_dst": "count(1)",
+        "description": "Check that the daily data loaded to fact table hadn't changed from data source and above 0",
+        "isEnable": true,
+        "sql": "row_num_validation"
+      },
+      "af_daily_panel_validation": {
+        "project_src": "subpltx-dev",
+        "dataset_src": "g_appsflyer",
+        "table_src": "fact",
+        "dataset_dst": "g_appsflyer",
+        "table_dst": "daily_campaign_panel",
+        "partition_atr": "dt",
+        "cnt_src": "count(1)",
+        "cnt_dst": "sum(t_events)",
+        "description": "Check that the daily data loaded to daily panel table hadn't changed from 'fact' and above 0",
+        "isEnable": true,
+        "sql": "row_num_validation"
+      }
+    },
+    "kpis": {
+      "": {
+        "": ""
+      }
+    }
+  },
+  "gaming": {
+    "validation": {
+      "fact_validation": {
+        "project_src": "subpltx-dev",
+        "dataset_src": "game_pltx",
+        "table_src": "fact",
+        "dataset_dst": "fp_daily_gaming",
+        "table_dst": "fact",
+        "partition_atr": "dt",
+        "cnt_src": "count(1)",
+        "cnt_dst": "count(1)",
+        "description": "Check that the distribution from the data source matches fact table",
+        "isEnable": true,
+        "sql": "row_num_validation"
+      },
+      "data_source_freshness": {
+        "project_src": "subpltx-dev",
+        "dataset_id": "game_pltx",
+        "table_id": "fact",
+        "thresh_in_hours": 24,
+        "description": "Checks last modified time < N Hours",
+        "isEnable": true,
+        "sql": "dataset_freshness_alert"
+      },
+      "fact_freshness": {
+        "project_src": "subpltx-dev",
+        "dataset_id": "fp_daily_gaming",
+        "table_id": "fact",
+        "thresh_in_hours": 24,
+        "description": "Checks last modified time < N Hours",
+        "isEnable": true,
+        "sql": "dataset_freshness_alert"
+      },
+      "daily_panel_freshness": {
+        "project_src": "subpltx-dev",
+        "dataset_id": "fp_panels",
+        "table_id": "daily_panel",
+        "thresh_in_hours": 24,
+        "description": "Checks last modified time < N Hours",
+        "isEnable": true,
+        "sql": "dataset_freshness_alert"
+      },
+      "user_panel_freshness": {
+        "project_src": "subpltx-dev",
+        "dataset_id": "fp_panels",
+        "table_id": "user_panel",
+        "thresh_in_hours": 24,
+        "description": "Checks last modified time < N Hours",
+        "isEnable": true,
+        "sql": "dataset_freshness_alert"
+      },
+      "dau_freshness": {
+        "project_src": "subpltx-dev",
+        "dataset_id": "fp_panels",
+        "table_id": "dau",
+        "thresh_in_hours": 24,
+        "description": "Checks last modified time < N Hours",
+        "isEnable": true,
+        "sql": "dataset_freshness_alert"
+      },
+      "installs_freshness": {
+        "project_src": "subpltx-dev",
+        "dataset_id": "fp_panels",
+        "table_id": "installs",
+        "thresh_in_hours": 24,
+        "description": "Checks last modified time < N Hours",
+        "isEnable": true,
+        "sql": "dataset_freshness_alert"
+      }
+    },
+    "kpis": {
+      "installs": {
+        "dataset": "fp_panels",
+        "table_id": "installs",
+        "thresh_in_percent": 0.1,
+        "d1": "previous_installs",
+        "description": "Check that the daily installs hadn't change dramatically",
+        "isEnable": true,
+        "sql": "gaming_installs_alert"
+      },
+      "dau": {
+        "dataset": "fp_panels",
+        "table_id": "dau",
+        "thresh_in_percent": 0.1,
+        "d1": "previous_dau",
+        "description": "Check that the DAU hadn't change dramatically",
+        "isEnable": true,
+        "sql": "gaming_dau_alert"
+      },
+      "last_active_dt": {
+        "dataset": "fp_panels",
+        "table_id": "user_panel",
+        "thresh_in_days": 100,
+        "description": "Check that the last activity date hadn't gone up above N days ago",
+        "isEnable": true,
+        "sql": "gaming_last_active_dt_alert"
+      }
+    }
+  }
+}

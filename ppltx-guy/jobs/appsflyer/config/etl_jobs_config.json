@@ -1,0 +1,64 @@
+{
+  "etl_jobs": {
+    "fact": {
+      "init": {
+        "enabled": true,
+        "description": "Creates fact table.",
+        "project_src": "subpltx-dev",
+        "dataset_src": "g_appsflyer",
+        "table_src_1": "appsflyer_installs_data_*",
+        "table_src_2": "appsflyer_inapp_data_*",
+        "dataset_dst": "g_appsflyer",
+        "table_dst": "fact",
+        "partition_att": "dt",
+        "sql": "fact_init"
+      },
+      "daily": {
+        "enabled": true,
+        "description": "Load daily raw events into the fact table.",
+        "project_src": "subpltx-dev",
+        "dataset_src": "g_appsflyer",
+        "dataset_dst": "g_appsflyer",
+        "table_src_1": "appsflyer_installs_data_*",
+        "table_src_2": "appsflyer_inapp_data_*",
+        "table_dst": "fact",
+        "partition_att": "dt",
+        "sql": "fact_daily"
+      },
+      "hourly": {
+        "enabled": false,
+        "description": "Delete data for a specific date from the fact table.",
+        "project_src": "subpltx-dev",
+        "dataset_src": "g_appsflyer",
+        "dataset_dst": "g_appsflyer",
+        "table_src_1": "appsflyer_installs_data_*",
+        "table_src_2": "appsflyer_inapp_data_*",
+        "table_dst": "fact",
+        "partition_att": "date(event_time)",
+        "sql": "fact_hourly"
+      }
+    },
+    "daily_panel": {
+      "init": {
+        "enabled": true,
+        "description": "Creates daily user panel.",
+        "dataset_src": "g_appsflyer",
+        "table_src": "fact",
+        "dataset_dst": "g_appsflyer",
+        "table_dst": "daily_campaign_panel",
+        "partition_att": "dt",
+        "sql": "daily_panel_init"
+      },
+      "daily": {
+        "enabled": true,
+        "description": "Load daily events from fact table into the daily user panel.",
+        "dataset_src": "g_appsflyer",
+        "table_src": "fact",
+        "dataset_dst": "g_appsflyer",
+        "table_dst": "daily_campaign_panel",
+        "partition_att": "dt",
+        "sql": "daily_panel_daily"
+      }
+    }
+  }
+}
