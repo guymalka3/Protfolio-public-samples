@@ -1,0 +1,162 @@
+
+version: 2
+
+models:
+  - name: af_installs_stg
+    description: "Staging layer over external connection"
+    config:
+      tags: ["appsflyer", "staging"]
+      materialized: view
+    columns:
+      - name: dt
+        description: "The date of the event"
+        data_tests:
+          - not_null
+      - name: install_time
+        description: "The install time"
+        data_tests:
+          - not_null
+      - name: event_time
+        description: "The event time"
+        data_tests:
+          - not_null
+      - name: event_name
+        description: "The name of the event"
+        data_tests:
+          - string_not_empty
+          - not_null
+      - name: event_revenue
+        description: "The revenue of the event"
+      - name: event_value
+        description: "The value of the event"
+      - name: event_revenue_usd
+        description: "The revenue of the event in USD"
+      - name: af_cost_model
+        description: "The cost model from appsflyer"
+      - name: af_cost_value
+        description: "The cost of the event from appsflyer"
+      - name: af_cost_currency
+        description: "The currency of the cost from appsflyer"
+      - name: event_source
+        description: "The source of the event"
+        data_tests:
+          - string_not_empty
+          - not_null
+      - name: media_source
+        description: "The media source of the event"
+        data_tests:
+          - string_not_empty
+          - not_null
+      - name: af_channel
+        description: "The appsflyer channel of the event"
+        data_tests:
+          - string_not_empty
+          - not_null
+      - name: af_keywords
+        description: "The keywords from appsflyer"
+      - name: install_app_store
+        description: "The store of installation"
+      - name: campaign
+        description: "The campaign name"
+        data_tests:
+          - string_not_empty
+          - not_null
+      - name: country_code
+        description: "The country code"
+        data_tests:
+          - not_null
+          - string_not_empty
+      - name: platform
+        description: "The platform of the event"
+        data_tests:
+          - string_not_empty
+          - not_null
+      - name: app_version
+        description: "The app version"
+        data_tests:
+          - string_not_empty
+          - not_null
+      - name: app_name
+        description: "The name of the app"
+      - name: appsflyer_id
+        description: "The appsflyer id"
+
+
+  - name: af_inapp_stg
+    description: "Staging layer over external connection"
+    config:
+      tags: ["appsflyer", "staging"]
+      materialized: view
+    columns:
+      - name: dt
+        description: "The date of the event"
+        data_tests:
+          - not_null
+      - name: install_time
+        description: "The install time"
+        data_tests:
+          - not_null
+      - name: event_time
+        description: "The event time"
+        data_tests:
+          - not_null
+      - name: event_name
+        description: "The name of the event"
+        data_tests:
+          - string_not_empty
+          - not_null
+      - name: event_revenue
+        description: "The revenue of the event"
+      - name: event_value
+        description: "The value of the event"
+      - name: event_revenue_usd
+        description: "The revenue of the event in USD"
+      - name: af_cost_model
+        description: "The cost model from appsflyer"
+      - name: af_cost_value
+        description: "The cost of the event from appsflyer"
+      - name: af_cost_currency
+        description: "The currency of the cost from appsflyer"
+      - name: event_source
+        description: "The source of the event"
+        data_tests:
+          - string_not_empty
+          - not_null
+      - name: media_source
+        description: "The media source of the event"
+        data_tests:
+          - string_not_empty
+          - not_null
+      - name: af_channel
+        description: "The appsflyer channel of the event"
+        data_tests:
+          - string_not_empty
+          - not_null
+      - name: af_keywords
+        description: "The keywords from appsflyer"
+      - name: install_app_store
+        description: "The store of installation"
+      - name: campaign
+        description: "The campaign name"
+        data_tests:
+          - string_not_empty
+          - not_null
+      - name: country_code
+        description: "The country code"
+        data_tests:
+          - not_null
+          - string_not_empty
+      - name: platform
+        description: "The platform of the event"
+        data_tests:
+          - string_not_empty
+          - not_null
+      - name: app_version
+        description: "The app version"
+        data_tests:
+          - string_not_empty
+          - not_null
+      - name: app_name
+        description: "The name of the app"
+      - name: appsflyer_id
+        description: "The appsflyer id"

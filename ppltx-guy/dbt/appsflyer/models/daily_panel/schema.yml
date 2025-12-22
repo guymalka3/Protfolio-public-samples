@@ -1,0 +1,67 @@
+
+version: 2
+
+models:
+  - name: af_daily_panel
+    description: "Fact table with all installs and inapp events"
+    config:
+      tags: ["appsflyer", "daily_panel"]
+      materialized: incremental
+      freshness:
+        warn_after: { count: 24, period: hour }
+        error_after: { count: 24, period: hour }
+
+    columns:
+      - name: campaign
+        description: "The campaign name"
+        data_tests:
+          - string_not_empty
+          - not_null
+      - name: dt
+        description: "Activity date"
+        data_tests:
+          - not_null
+      - name: media_source
+        description: "The media source of the campaign"
+        data_tests:
+          - string_not_empty
+          - not_null
+      - name: t_events
+        description: "total events"
+        data_tests:
+          - not_null
+      - name: t_install
+        description: "total installs"
+      - name: t_af_purchase
+        description: "total appsflyer purchases"
+      - name: t_SessionStart
+        description: "total SessionStart events"
+      - name: t_SessionEnd
+        description: "total SessionEnd events"
+      - name: t_TournamentStart
+        description: "total tournaments started"
+      - name: t_TournamentFinished
+        description: "total tournaments finished"
+      - name: t_ios
+        description: "total IOS Users"
+      - name: t_android
+        description: "total Android Users"
+      - name: t_Facebook
+        description: "total users from facebook"
+      - name: t_Google
+        description: "total users from google"
+      - name: t_TikTok
+        description: "total users from tiktok"
+      - name: t_Organic
+        description: "total organic users"
+      - name: revenue
+        description: "The total revenue"
+      - name: cost
+        description: "The total cost"
+      - name: roas
+        description: "return on ad spend"
+      - name: data_source
+        description: "The source of the data"
+        data_tests:
+          - string_not_empty
+          - not_null

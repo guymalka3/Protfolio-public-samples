@@ -1,0 +1,36 @@
+
+version: 2
+
+sources:
+
+  - name: appsflyer_pl
+    schema: g_dbt_af
+    tables:
+
+      - name: installs_raw
+        identifier: gcs_af_installs_raw
+        description: "External table data source from GCS bucket - Install events"
+        tests:
+          - has_todays_data
+        external:
+          location: "gs://subpltx/appsflyer/*/appsflyer_installs_data.csv"
+          file_format: csv
+          options:
+            format: csv
+            skip_leading_rows: 1
+            quote: '"'
+            encoding: "UTF-8"
+
+      - name: inapp_raw
+        identifier: gcs_af_inapp_raw
+        description: "External table data source from GCS bucket - Inapp events"
+        tests:
+          - has_todays_data
+        external:
+          location: "gs://subpltx/appsflyer/*/appsflyer_inapp_data.csv"
+          file_format: csv
+          options:
+            format: csv
+            skip_leading_rows: 1
+            quote: '"'
+            encoding: "UTF-8"
