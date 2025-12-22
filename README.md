@@ -70,8 +70,9 @@ These jobs are scheduled on a **Google Cloud VM** via `cron`, so the whole syste
 
 This repo is designed to hold multiple portfolio projects.  
 Planned additions:
-
+- Add appsflyer-dbt review HERE
 - User‑level game analytics project (cohorts, funnels, retention).  
 - Additional data sources and pipelines (e.g., Mixpanel, financial/portfolio data).  
 
 As new projects are added, this README will be updated with links and short overviews for each one.
+
