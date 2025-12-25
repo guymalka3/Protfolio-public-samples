@@ -56,23 +56,44 @@ These jobs are scheduled on a **Google Cloud VM** via `cron`, so the whole syste
 
 ---
 
+### 3. AppsFlyer dbt Transformation Layer
+
+**Goal:** 
+Refactor the transformation logic from custom Python scripts into a robust, version-controlled **dbt (data build tool)** project. This project implements modular SQL modeling, automated testing, and documentation to ensure a "single source of truth" for campaign analytics.
+
+**Highlights:**
+
+- **Modular Architecture:** - **Staging Layer:** Standardizes raw BigQuery fields, renames columns for clarity, and casts data types.
+  - **fct Layer:** Implements business logic, such as joining installs with in-app events and calculating derived metrics.
+  - **Mart Layer:** Produces the final models optimized for BI tools.
+- **Data Quality & Governance:** - Utilizes **dbt tests**to catch data integrity issues at the source.
+  - Implements **dbt source freshness** checks to monitor data latency from GCS.
+- **Automation & Macros:** - Built custom **Jinja macros** to automate repetitive calculations and tests.
+  - Uses **Incremental models** to optimize BigQuery processing costs by only transforming new daily data.
+- **Lineage & Docs:** Generates a full **Lineage Graph** and documentation, making the flow from raw GCS blobs to final KPIs transparent and easy to audit.
+
+---
+---
+
 ## 🔧 Tech Stack
 
 - **Languages:** Python, SQL  
 - **Cloud:** Google Cloud Platform – GCS, BigQuery, Compute Engine (VM)  
-- **Orchestration:** cron on Linux VM, config‑driven ETL, Bash wrappers  
-- **Monitoring:** BigQuery log tables, Slack alerts, validation scripts  
-- **BI:** Looker Studio dashboards on top of BigQuery
-
+- **Transformation:** **dbt (data build tool)**
+- **Orchestration:** cron on Linux VM, dbt CLI, Bash wrappers  
+- **Monitoring:** dbt tests & freshness, BigQuery log tables, Slack alerts  
+- **BI:** Looker Studio dashboards
+  
 ---
 
 ## 📌 Roadmap
 
 This repo is designed to hold multiple portfolio projects.  
 Planned additions:
-- Add appsflyer-dbt review HERE
+
 - User‑level game analytics project (cohorts, funnels, retention).  
 - Additional data sources and pipelines (e.g., Mixpanel, financial/portfolio data).  
 
 As new projects are added, this README will be updated with links and short overviews for each one.
+
 
